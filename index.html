@@ -3,212 +3,522 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Martins Flooring & Home Improvements</title>
+  <title>Martins Flooring & Home Improvements | Premium Renovations in Ohio</title>
   <style>
-    /* Reset & Colors */
+    :root {
+      /* Advanced Color Palette */
+      --bg-dark: #0a0e14;
+      --bg-card: #131821;
+      --accent-gold: #f59e0b;
+      --accent-blue: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #1e293b;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 30px -3px rgba(0, 0, 0, 0.5), 0 4px 10px -2px rgba(0, 0, 0, 0.3);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    :root {
-      --primary: #1e3a8a; /* Deep Trust Blue */
-      --secondary: #d97706; /* Warm Wood Accent */
-      --dark: #0f172a;
-      --light: #f8fafc;
-      --gray: #64748b;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
-      background-color: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-weight: 400;
     }
 
-    /* Navigation */
-    nav {
-      background: #ffffff;
-      padding: 20px 5%;
+    /* Fine-tuned Typography */
+    h1, h2, h3, h4 {
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-blue);
+    }
+
+    /* Header & Navigation */
+    header {
+      background: rgba(10, 14, 20, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      box-shadow: var(--shadow-sm);
     }
 
-    .logo {
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    /* Custom Visual Logo: Stylized Rooflines + Wood Planks */
+    .visual-logo {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--accent-gold), #d97706);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      color: #000;
+      font-weight: 900;
       font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--primary);
     }
 
-    .logo span {
-      color: var(--secondary);
+    .visual-logo::before {
+      content: '';
+      position: absolute;
+      width: 80%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.5);
+      top: 10px;
+      left: 10%;
+      border-radius: 4px;
     }
 
-    .nav-btn {
-      background: var(--secondary);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
+    .visual-logo::after {
+      content: '';
+      position: absolute;
+      width: 80%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      top: 22px;
+      left: 10%;
+      border-radius: 4px;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      color: var(--text-main);
+    }
+
+    .brand span {
+      color: var(--accent-gold);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-call-nav {
+      color: var(--text-main);
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.2s;
+      font-size: 0.9rem;
+      padding: 9px 18px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      transition: var(--transition);
     }
 
-    .nav-btn:hover {
-      background: #b45309;
+    .btn-call-nav:hover {
+      background: var(--bg-card);
+      border-color: var(--accent-blue);
+    }
+
+    .btn-quote {
+      background: linear-gradient(135deg, var(--accent-gold), #d97706);
+      color: #000;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .btn-quote:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
     }
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
-                  url('https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&w=1200&q=80') center/cover;
-      color: white;
+      padding: 120px 6% 90px;
+      max-width: 1200px;
+      margin: 0 auto;
       text-align: center;
-      padding: 100px 20px;
+    }
+
+    .badge-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      background: rgba(245, 158, 11, 0.08);
+      color: var(--accent-gold);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .badge-wrapper:hover .badge {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
     }
 
     .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #cbd5e1;
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-
-    .cta-btn {
-      background: var(--primary);
-      color: white;
-      padding: 14px 28px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 6px;
-      display: inline-block;
-      transition: background 0.2s;
-    }
-
-    .cta-btn:hover {
-      background: #1d4ed8;
-    }
-
-    /* Services Section */
-    .services {
-      padding: 80px 5%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .services h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      color: var(--primary);
-      margin-bottom: 40px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      border-top: 4px solid var(--secondary);
-    }
-
-    .card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      color: var(--dark);
-    }
-
-    .card p {
-      color: var(--gray);
-    }
-
-    /* Contact Section */
-    .contact {
-      background: #e2e8f0;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .contact h2 {
-      color: var(--primary);
-      margin-bottom: 15px;
-    }
-
-    .contact p {
-      color: var(--gray);
+      font-size: 3.6rem;
+      line-height: 1.1;
       margin-bottom: 25px;
     }
 
-    footer {
-      background: var(--dark);
-      color: white;
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.35rem;
+      max-width: 750px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary-lg {
+      background: linear-gradient(135deg, var(--accent-gold), #d97706);
+      color: #000;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .btn-primary-lg:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 25px rgba(245, 158, 11, 0.6);
+    }
+
+    .btn-secondary-lg {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .btn-secondary-lg:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+    }
+
+    /* Ohio Service Area Message */
+    .service-area-message {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(13, 18, 20, 0.8));
+      border: 1px solid var(--accent-blue);
+      max-width: 1000px;
+      margin: 60px auto 100px;
+      padding: 30px;
+      border-radius: 20px;
       text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-area-message h3 {
+      color: var(--accent-blue);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .service-area-message p {
+      color: var(--text-main);
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+
+    /* Section Headings */
+    .section-title {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-title h2 {
+      font-size: 2.6rem;
+    }
+
+    .section-title p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 6% 120px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-gold);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-card .icon-wrapper {
+      width: 70px;
+      height: 70px;
+      background: rgba(245, 158, 11, 0.1);
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 25px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .icon-wrapper {
+      background: var(--accent-gold);
+    }
+
+    .icon {
+      font-size: 3rem;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .icon {
+      filter: brightness(0) saturate(100%);
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      flex-grow: 1;
+    }
+
+    /* Direct Contact Section */
+    .contact-container {
+      max-width: 1100px;
+      margin: 0 auto 120px;
+      padding: 0 6%;
+    }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-gold);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-card .c-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .contact-card:hover .c-icon {
+      transform: scale(1.1);
+    }
+
+    .contact-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      color: var(--accent-blue);
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .contact-card:hover p {
+      color: var(--accent-gold);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    
+    footer .brand-group {
+      justify-content: center;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">Martins <span>Flooring</span></div>
-    <a href="#contact" class="nav-btn">Get a Quote</a>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1>Martins Flooring & Home Improvements</h1>
-    <p>Quality craftsmanship, reliable service, and beautiful results for every room in your home.</p>
-    <a href="#services" class="cta-btn">View Our Services</a>
+  <!-- Header -->
+  <header>
+    <a href="#" class="brand-group">
+      <div class="visual-logo">M</div>
+      <div class="brand">MARTINS <span>FLOORING</span></div>
+    </a>
+    <div class="header-actions">
+      <a href="tel:6146045493" class="btn-call-nav">📞 (614) 604-5493</a>
+      <a href="#contact" class="btn-quote">Get a Quote</a>
+    </div>
   </header>
 
-  <!-- Services Section -->
-  <section class="services" id="services">
-    <h2>What We Do</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>🪵 Hardwood & Laminate</h3>
-        <p>Expert installation and refinishing for hardwood, laminate, and engineered flooring options.</p>
-      </div>
-      <div class="card">
-        <h3>🧱 Custom Tile Work</h3>
-        <p>Durable, precision tile installation for kitchen backsplashes, bathroom walls, and floors.</p>
-      </div>
-      <div class="card">
-        <h3>🔨 Home Improvements</h3>
-        <p>Full room remodels, trim work, drywall repair, and general home improvement services.</p>
-      </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge-wrapper">
+      <div class="badge">✨ Premium Flooring & Renovations</div>
+    </div>
+    <h1>Transforming Your Space with <span>Craftsmanship & Precision</span></h1>
+    <p>From hardwood & custom tile installation to complete home remodels, we bring quality and durability to every square foot.</p>
+    
+    <div class="hero-buttons">
+      <a href="tel:6146045493" class="btn-primary-lg">📞 Call for Free Quote</a>
+      <a href="mailto:martinsflooringmf@gmail.com" class="btn-secondary-lg">✉️ Email Us Directly</a>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <h2>Ready to Start Your Project?</h2>
-    <p>Contact us today for a free estimate on your flooring or remodeling needs.</p>
-    <a href="mailto:info@martinsflooring.com" class="cta-btn">Contact Us Today</a>
+  <!-- Ohio Service Area Message -->
+  <section class="service-area-message">
+    <h3>Service Areas</h3>
+    <p>We proudly cover most of the Ohio area. Give us a call today!</p>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section-title">
+    <h2>Our Specialties</h2>
+    <p>Built to last using industry-leading materials and techniques.</p>
+  </section>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="icon-wrapper"><span class="icon">🪵</span></div>
+      <h3>Hardwood & Laminate</h3>
+      <p>Precision installation, custom staining, sanding, and refinishing engineered hardwood and laminate floors.</p>
+    </div>
+    <div class="service-card">
+      <div class="icon-wrapper"><span class="icon">🧱</span></div>
+      <h3>Custom Tile & Stone</h3>
+      <p>Waterproofed tile systems for walk-in showers, kitchen backsplashes, and high-traffic floor areas.</p>
+    </div>
+    <div class="service-card">
+      <div class="icon-wrapper"><span class="icon">🔨</span></div>
+      <h3>Home Improvements</h3>
+      <p>Full kitchen & bath remodels, custom baseboards, trim installation, drywall repair, and painting.</p>
+    </div>
+  </div>
+
+  <!-- Direct Contact Cards -->
+  <section class="contact-container" id="contact">
+    <div class="section-title">
+      <h2>Get In Touch Immediately</h2>
+      <p>Click below to call or email us directly for your free estimate.</p>
+    </div>
+
+    <div class="contact-cards">
+      <a href="tel:6146045493" class="contact-card">
+        <span class="c-icon">📞</span>
+        <h3>Primary Phone</h3>
+        <p>(614) 604-5493</p>
+      </a>
+
+      <a href="tel:6147874954" class="contact-card">
+        <span class="c-icon">📱</span>
+        <h3>Secondary Phone</h3>
+        <p>(614) 787-4954</p>
+      </a>
+
+      <a href="mailto:martinsflooringmf@gmail.com" class="contact-card">
+        <span class="c-icon">✉️</span>
+        <h3>Send an Email</h3>
+        <p style="font-size: 0.9rem;">martinsflooringmf@gmail.com</p>
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; Martins Flooring & Home Improvements. All rights reserved.</p>
+    <div class="brand-group">
+      <div class="visual-logo" style="width: 32px; height: 32px; font-size: 1rem; border-radius: 6px;">M</div>
+      <div class="brand" style="font-size: 1.1rem;">MARTINS <span>FLOORING</span> & HOME IMPROVEMENTS</div>
+    </div>
+    <p>&copy; 2026 Martins Flooring. All rights reserved.</p>
   </footer>
 
 </body>
