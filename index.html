@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Martins Flooring & Home Improvements | Luxury Modern Contracting</title>
+  <title>Martins Flooring & Home Improvements LLC | Luxury Craftsmanship</title>
   <style>
     :root {
       /* Palette: Black, White & Warm Rich Brown */
@@ -37,7 +37,7 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       
-      /* Animated Woodgrain Grid Pattern */
+      /* Animated Matrix Pattern */
       background-image: 
         linear-gradient(to right, rgba(150, 97, 61, 0.08) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(150, 97, 61, 0.08) 1px, transparent 1px),
@@ -58,7 +58,7 @@
     }
 
     /* ==========================================
-       NEXT-LEVEL ENTRANCE SPLASH SCREEN
+       SPLASH SCREEN
        ========================================== */
     #splash-screen {
       position: fixed;
@@ -83,7 +83,6 @@
       pointer-events: none;
     }
 
-    /* Laser Scanning Animation */
     .splash-scanner {
       position: absolute;
       top: 0;
@@ -209,28 +208,159 @@
       box-shadow: 0 0 30px var(--accent-brown-glow);
     }
 
-    .btn-enter-super::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: 0.6s;
-    }
-
-    .btn-enter-super:hover::before {
-      left: 100%;
-    }
-
     .btn-enter-super:hover {
       transform: scale(1.08) translateY(-2px);
       box-shadow: 0 0 50px var(--accent-brown-light), 0 0 20px var(--accent-white);
     }
 
     /* ==========================================
-       NEXT-LEVEL QUOTE & SERVICE HUB
+       3-SECOND "LEARN ABOUT US" LOADER ANIMATION
+       ========================================== */
+    #about-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 7, 6, 0.96);
+      backdrop-filter: blur(25px);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+    }
+
+    #about-loader.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .loader-ring-box {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 30px;
+    }
+
+    .loader-circle {
+      position: absolute;
+      inset: 0;
+      border: 3px solid rgba(150, 97, 61, 0.2);
+      border-top: 3px solid var(--accent-brown-light);
+      border-radius: 50%;
+      animation: spinLoader 1s linear infinite;
+      box-shadow: 0 0 20px var(--accent-brown-glow);
+    }
+
+    @keyframes spinLoader {
+      100% { transform: rotate(360deg); }
+    }
+
+    .loader-icon {
+      font-size: 2.2rem;
+      color: var(--accent-white);
+    }
+
+    .loader-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent-white);
+      margin-bottom: 15px;
+    }
+
+    .loader-progress-bg {
+      width: 280px;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+    }
+
+    .loader-progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-brown), var(--accent-brown-light), var(--accent-white));
+      box-shadow: 0 0 15px var(--accent-brown-light);
+    }
+
+    #about-loader.active .loader-progress-bar {
+      animation: load3Sec 3s linear forwards;
+    }
+
+    @keyframes load3Sec {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    /* ==========================================
+       ABOUT US MODAL DISPLAY
+       ========================================== */
+    #about-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 7, 6, 0.95);
+      backdrop-filter: blur(25px);
+      z-index: 95000;
+      overflow-y: auto;
+      padding: 60px 8%;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.92) translateY(40px);
+      transition: var(--transition-long);
+    }
+
+    #about-modal.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+    }
+
+    .about-modal-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .about-modal-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, var(--bg-card), #0d0b0a);
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
+      padding: 55px;
+      box-shadow: 0 0 60px var(--accent-brown-glow);
+      position: relative;
+    }
+
+    .about-modal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-brown), var(--accent-white), var(--accent-brown));
+      border-radius: 24px 24px 0 0;
+    }
+
+    /* ==========================================
+       QUOTE & SERVICE HUB
        ========================================== */
     #main-content {
       transition: var(--transition-long);
@@ -735,7 +865,7 @@
     .hero p {
       color: var(--accent-silver);
       font-size: 1.2rem;
-      max-width: 700px;
+      max-width: 750px;
       margin: 0 auto 40px;
     }
 
@@ -766,24 +896,82 @@
       box-shadow: 0 0 50px var(--accent-brown-light);
     }
 
-    .btn-hero-secondary {
+    .btn-hero-about {
       background: var(--bg-card);
       color: var(--accent-white);
-      border: 1px solid var(--border-light);
-      font-weight: 700;
+      border: 1px solid var(--accent-brown);
+      font-weight: 800;
       padding: 18px 40px;
       border-radius: 8px;
       cursor: pointer;
       transition: var(--transition-fast);
       font-size: 0.95rem;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       text-transform: uppercase;
+      box-shadow: 0 0 20px var(--accent-brown-glow);
     }
 
-    .btn-hero-secondary:hover {
-      border-color: var(--accent-brown-light);
-      background: var(--bg-card-hover);
-      box-shadow: 0 0 20px var(--accent-brown-glow);
+    .btn-hero-about:hover {
+      background: var(--accent-brown);
+      color: var(--accent-white);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 40px var(--accent-brown-light);
+    }
+
+    /* About Section */
+    .about-section {
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      padding: 0 8%;
+    }
+
+    .about-card {
+      background: linear-gradient(145deg, var(--bg-card), #0d0b0a);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 50px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-brown), var(--accent-white), var(--accent-brown));
+    }
+
+    .about-title {
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .about-text {
+      color: var(--accent-silver);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .brand-motto {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: var(--bg-black);
+      border: 1px solid var(--accent-brown-light);
+      color: var(--accent-brown-light);
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      font-size: 0.9rem;
     }
 
     /* Services Grid */
@@ -886,12 +1074,13 @@
       .hero h1 { font-size: 2.5rem; }
       header { padding: 16px 5%; }
       .brand-sub { display: none; }
+      .about-card, .about-modal-card { padding: 30px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NEXT-LEVEL INTERACTIVE SPLASH SCREEN -->
+  <!-- SPLASH SCREEN -->
   <div id="splash-screen">
     <div class="splash-scanner"></div>
     <div class="splash-orb"></div>
@@ -901,8 +1090,51 @@
         <div class="splash-logo">M</div>
       </div>
       <div class="splash-title">Martins <span>Flooring</span></div>
-      <div class="splash-subtitle">& Home Improvements</div>
+      <div class="splash-subtitle">& Home Improvements LLC</div>
       <button class="btn-enter-super" onclick="enterSite()">Enter Experience</button>
+    </div>
+  </div>
+
+  <!-- 3-SECOND INTERACTIVE ABOUT LOADER -->
+  <div id="about-loader">
+    <div class="loader-ring-box">
+      <div class="loader-circle"></div>
+      <div class="loader-icon">🪵</div>
+    </div>
+    <div class="loader-title">Loading Craftsmanship Story</div>
+    <div class="loader-progress-bg">
+      <div class="loader-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT US FULL SCREEN MODAL -->
+  <div id="about-modal">
+    <div class="about-modal-nav">
+      <div class="brand-group">
+        <div class="visual-logo">M</div>
+        <div>
+          <span class="brand-name">Martins Flooring</span>
+          <span class="brand-sub" style="display:block;">Our Legacy & Standards</span>
+        </div>
+      </div>
+      <button class="btn-back" onclick="closeAboutModal()">← Close Story</button>
+    </div>
+
+    <div class="about-modal-card">
+      <div class="about-title">About Martins Flooring & Home Improvements LLC</div>
+      <p class="about-text">
+        At Martins Flooring & Home Improvements LLC, we believe every home deserves exceptional craftsmanship and timeless design. Since 2019, we have specialized in transforming residential spaces through premium flooring installation, custom renovations, and high-end home improvement services tailored to each client’s vision.
+      </p>
+      <p class="about-text">
+        Our reputation is built on precision, integrity, and an uncompromising commitment to quality. Every detail matters—from the materials we select to the finishing touches that elevate a project from ordinary to extraordinary. Whether we’re installing luxury flooring, remodeling a living space, or completing a full-home renovation, our work reflects the highest standards of excellence.
+      </p>
+      <p class="about-text">
+        We understand that your home is more than a property—it’s an investment and a reflection of your lifestyle. That’s why we collaborate closely with every client, delivering personalized solutions, transparent communication, and a seamless experience from concept to completion.
+      </p>
+      <p class="about-text" style="font-weight: 700; color: var(--accent-white);">
+        At Martins Flooring & Home Improvements LLC, we don’t simply renovate homes—we create refined spaces designed to inspire, increase value, and stand the test of time.
+      </p>
+      <div class="brand-motto">Luxury Craftsmanship. Exceptional Service. Lasting Quality.</div>
     </div>
   </div>
 
@@ -914,7 +1146,7 @@
         <div class="insta-avatar">M</div>
         <div>
           <div class="insta-handle">@martinflooringmf</div>
-          <div class="insta-sub">Martins Flooring & Home Improvements • Instagram</div>
+          <div class="insta-sub">Martins Flooring & Home Improvements LLC</div>
         </div>
       </div>
       
@@ -995,9 +1227,9 @@
 
       <!-- Service Map -->
       <div class="quote-map-panel">
-        <div class="radius-badge">📍 1-Hour Service Radius</div>
-        <div class="quote-title" style="font-size: 1.5rem;">Westerville & Columbus Area</div>
-        <p class="quote-desc">Providing on-site flooring and home improvement estimates across Central Ohio.</p>
+        <div class="radius-badge">📍 Central Ohio Service Area</div>
+        <div class="quote-title" style="font-size: 1.5rem;">Westerville & Columbus</div>
+        <p class="quote-desc">Providing on-site flooring and home improvement estimates across the local region.</p>
         
         <div class="map-container">
           <iframe 
@@ -1021,7 +1253,7 @@
         <div class="visual-logo">M</div>
         <div>
           <span class="brand-name">Martins</span>
-          <span class="brand-sub" style="display:block;">Flooring & Improvements</span>
+          <span class="brand-sub" style="display:block;">Flooring & Improvements LLC</span>
         </div>
       </a>
       <div class="header-actions">
@@ -1035,58 +1267,72 @@
     <!-- Infinite Ticker Banner -->
     <div class="ticker-wrap">
       <div class="ticker">
-        <div class="ticker-item">⚡ SERVING WESTERVILLE & COLUMBUS OH</div>
-        <div class="ticker-item">🪵 CUSTOM HARDWOOD & TILE SPECIALISTS</div>
-        <div class="ticker-item">🔨 FULL HOME RENOVATION & IMPROVEMENTS</div>
-        <div class="ticker-item">📍 UP TO 1-HOUR SERVICE RADIUS</div>
-        <div class="ticker-item">⚡ SERVING WESTERVILLE & COLUMBUS OH</div>
-        <div class="ticker-item">🪵 CUSTOM HARDWOOD & TILE SPECIALISTS</div>
-        <div class="ticker-item">🔨 FULL HOME RENOVATION & IMPROVEMENTS</div>
-        <div class="ticker-item">📍 UP TO 1-HOUR SERVICE RADIUS</div>
+        <div class="ticker-item">⚡ ESTABLISHED IN 2019 • LUXURY CRAFTSMANSHIP</div>
+        <div class="ticker-item">🪵 PREMIUM FLOORING & CUSTOM RENOVATIONS</div>
+        <div class="ticker-item">🔨 WESTERVILLE & COLUMBUS OH</div>
+        <div class="ticker-item">📍 UNCOMPROMISING COMMITMENT TO QUALITY</div>
+        <div class="ticker-item">⚡ ESTABLISHED IN 2019 • LUXURY CRAFTSMANSHIP</div>
+        <div class="ticker-item">🪵 PREMIUM FLOORING & CUSTOM RENOVATIONS</div>
+        <div class="ticker-item">🔨 WESTERVILLE & COLUMBUS OH</div>
+        <div class="ticker-item">📍 UNCOMPROMISING COMMITMENT TO QUALITY</div>
       </div>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-tag">Precision Craftsmanship</div>
-      <h1>Master Flooring & <span>Home Renovation</span></h1>
-      <p>Delivering high-end flooring solutions and professional home improvements with rich detail and enduring quality.</p>
+      <div class="hero-tag">Since 2019</div>
+      <h1>Refined Spaces Built To <span>Stand The Test Of Time</span></h1>
+      <p>Transforming residential spaces through premium flooring installation, custom renovations, and tailored home improvement services.</p>
       
       <div class="hero-cta">
         <button class="btn-hero-primary" onclick="openQuoteScreen()">Get A Free Quote</button>
-        <button class="btn-hero-secondary" onclick="openSocialModal()">📸 View Social Portfolio</button>
+        <button class="btn-hero-about" onclick="triggerAboutSequence()">✨ Learn About Us</button>
+      </div>
+    </section>
+
+    <!-- On-Page About Section -->
+    <section class="about-section">
+      <div class="about-card">
+        <div class="about-title">About Martins Flooring & Home Improvements LLC</div>
+        <p class="about-text">
+          At Martins Flooring & Home Improvements LLC, we believe every home deserves exceptional craftsmanship and timeless design. Since 2019, we have specialized in transforming residential spaces through premium flooring installation, custom renovations, and high-end home improvement services tailored to each client’s vision.
+        </p>
+        <p class="about-text">
+          Our reputation is built on precision, integrity, and an uncompromising commitment to quality. Every detail matters—from the materials we select to the finishing touches that elevate a project from ordinary to extraordinary.
+        </p>
+        <div class="brand-motto">Luxury Craftsmanship. Exceptional Service. Lasting Quality.</div>
       </div>
     </section>
 
     <!-- Services Section -->
     <div class="section-header">
-      <h2>Specialized Contracting Services</h2>
-      <p>Engineered for endurance, beauty, and structural excellence.</p>
+      <h2>Our Core Services</h2>
+      <p>Tailored solutions delivered with precision and integrity.</p>
     </div>
 
     <section class="services-grid">
       <div class="service-card">
         <div class="service-icon">🪵</div>
-        <h3>Hardwood & Engineered Flooring</h3>
-        <p>Precision installation, custom floor staining, refinishing, and laminate solutions tailored for heavy traffic and aesthetic elegance.</p>
+        <h3>Premium Flooring Installation</h3>
+        <p>Hardwood installation, engineered wood, luxury vinyl plank, laminate, custom floor staining, sanding, and refinishing.</p>
       </div>
 
       <div class="service-card">
         <div class="service-icon">🧱</div>
-        <h3>Custom Tile & Stone Systems</h3>
-        <p>Expert waterproofing, subfloor preparation, and tile setting for luxury walk-in showers, custom backsplashes, and floor designs.</p>
+        <h3>Custom Renovations & Tile</h3>
+        <p>Subfloor waterproofing, luxury tile setting, custom shower designs, backsplashes, and full space remodels.</p>
       </div>
 
       <div class="service-card">
         <div class="service-icon">🔨</div>
-        <h3>Comprehensive Home Improvements</h3>
-        <p>Full-scope room remodeling, custom trim work, baseboard placement, drywall installation, and high-finish interior painting.</p>
+        <h3>High-End Home Improvements</h3>
+        <p>Precision trim work, custom baseboards, interior painting, door installations, and full home enhancements.</p>
       </div>
     </section>
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2026 Martins Flooring & Home Improvements. All rights reserved.</p>
+      <p>&copy; 2026 Martins Flooring & Home Improvements LLC. All rights reserved.</p>
     </footer>
   </div>
 
@@ -1094,6 +1340,21 @@
   <script>
     function enterSite() {
       document.getElementById('splash-screen').classList.add('hidden');
+    }
+
+    function triggerAboutSequence() {
+      const loader = document.getElementById('about-loader');
+      loader.classList.add('active');
+
+      // 3-second delay before opening the About Modal
+      setTimeout(() => {
+        loader.classList.remove('active');
+        document.getElementById('about-modal').classList.add('active');
+      }, 3000);
+    }
+
+    function closeAboutModal() {
+      document.getElementById('about-modal').classList.remove('active');
     }
 
     function openQuoteScreen() {
